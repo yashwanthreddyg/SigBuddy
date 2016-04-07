@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.test.sigbuddy">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDOeugpSpbmQoikqnf0CahSFu2oyWS54rw" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".CoreActivity" />
+        <activity android:name=".ToggleActivity" />
+
+        <service
+            android:name="layout.SigListener"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".IncomingSmsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".LocActivity" />
+        <activity android:name=".SmsReceiveActivity" />
+
+        <service
+            android:name=".SigBuddyCoreService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".SendSmsActivity" ></activity>
+        <activity android:name=".LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ContactsActivity"></activity>
+        <activity android:name=".ConfigActivity"></activity>
+        <activity android:name=".IntroActivity"></activity>
+    </application>
+
+</manifest>
